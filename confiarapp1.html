@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transferencia Bancaria</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom, #dceeff, #ffffff);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 60px 20px;
+      color: #333;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: #111;
+      font-size: 1.9rem;
+      text-align: center;
+      margin-bottom: 50px;
+      max-width: 800px;
+      line-height: 1.4;
+    }
+
+    .clabe-box {
+      background-color: #ffffff;
+      border: 2px solid #0a66c2;
+      border-radius: 12px;
+      padding: 30px 40px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .clabe-box:hover {
+      transform: translateY(-4px);
+    }
+
+    .clabe-text {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 25px;
+      color: #0a0a0a;
+      word-break: break-word;
+    }
+
+    .copy-button {
+      background-color: #0a66c2;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .copy-button:hover {
+      background-color: #084d9e;
+      transform: scale(1.03);
+    }
+
+    .copied-message {
+      margin-top: 15px;
+      font-size: 0.95rem;
+      color: #2e7d32;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .copied-message.visible {
+      opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+      .clabe-text {
+        font-size: 1.4rem;
+      }
+
+      .copy-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Para transferencias, favor de copiar y pegar la CLABE interbancaria</h1>
+
+  <div class="clabe-box">
+    <div id="clabe" class="clabe-text">012180015771328192</div>
+    <button class="copy-button" onclick="copiarCLABE()">Copiar CLABE</button>
+    <div id="copiedMsg" class="copied-message">¡CLABE copiada correctamente!</div>
+  </div>
+
+  <script>
+    function copiarCLABE() {
+      const clabe = document.getElementById("clabe").innerText;
+      navigator.clipboard.writeText(clabe).then(() => {
+        const msg = document.getElementById("copiedMsg");
+        msg.classList.add("visible");
+        setTimeout(() => {
+          msg.classList.remove("visible");
+        }, 2500);
+      });
+    }
+  </script>
+
+</body>
+</html>
